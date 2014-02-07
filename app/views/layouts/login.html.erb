@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Activ Contacts</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Activ Contacts">
+		<!--<link rel="shortcut icon" href="/assets/favicon.ico"/>-->
+  <title>Contacts</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="page">
+			<div class="navbar navbar-inverse navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+						<a class="brand" href="#"><h1><img src="/assets/logo.png" alt="CTI Solutions Group" /><span>Activ Contacts</span></h1></a>
+
+						<div class="nav-collapse collapse">
+							<p class="navbar-text pull-right">
+							<% if current_user.present?%>
+								<span>Welcome </span><a href="#" class="navbar-link first"><b> Administrator</b></a>
+								<a href="#" class="navbar-link" id="my_account">My Account</a>
+								<input type="hidden" id="current_user_id" value = "<%=session[:auth_token]%>"/>
+								<a href="/logout" class="navbar-link">Logout</a>
+								<%end%>
+							</p>
+							<a href="#" class="cp">Activ Contacts</a>
+						</div><!--/.nav-collapse -->
+					</div>
+				</div>
+									<div id="load_image" style="display:none;" align="center">
+					<img src="/assets/ajax-loader-icon.gif">
+					</div>
+				<% if current_user.present?%>
+				<div class="sub-nav clearfix">
+					<ul>
+						<li>
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">Royalty Reporting</a>
+						</li>
+						<li>
+							<a href="#">Royalty Accounting</a>
+						</li>
+						<li class="active">
+							<a href="#">Admin</a>
+						</li>
+					</ul>
+					<div id="load_image" style="padding-right:25px; display:none;" >
+					<img src="/assets/ajax-loader-icon.gif">
+					</div>
+				</div>
+				<%end%>
+			</div>
+			<div class="container">
+									<% if notice.present?%>
+<p class="notice alert-info"><%= notice %></p>
+<%end%>
+<% if alert.present?%>
+<p class="alert"><%= alert %></p>
+<%end%>
+<%= yield %>
+							<div class="footer">
+								<p>
+									&copy;Activ Contact –  2014
+								</p>
+							</div>
+							</div>
+							</div>
+									<script type="text/javascript" src="/assets/jquery.js"></script>
+		<script type="text/javascript" src="/assets/application.js"></script>
+		<script type="text/javascript" src="/assets/bootstrap-collapse.js"></script>
+</body>
+</html>
+<script>
+$(document).ajaxStart(function() {
+$( "#load_image" ).show();
+});
+$(document).ajaxStop(function() {
+$( "#load_image" ).hide();
+});
+</script>
