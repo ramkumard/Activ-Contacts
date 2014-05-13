@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  status_desc: MyString
+  delayed_id: 1
+  delayed_desc: MyText
+  contact_imports_id: 1
+
+two:
+  status: MyString
+  status_desc: MyString
+  delayed_id: 1
+  delayed_desc: MyText
+  contact_imports_id: 1

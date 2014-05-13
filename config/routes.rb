@@ -1,6 +1,6 @@
 Contacts::Application.routes.draw do
   devise_for :users,
-   :controllers => {
+    :controllers => {
 		:omniauth_callbacks => "users/omniauth_callbacks"
 	}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +8,9 @@ Contacts::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
-  resource :mobiles
+  resources :mobiles
+  resources :user_friend_invites
+  resources :contact_imports
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,0 +1,27 @@
+<div class="cnt-left">
+<h2 class="title">Upload New Contacts</h2>
+<div class="outer-box">
+ <%= form_for :contact_imports , :url => "/contact_imports" , :method => "post",:class=>"form-horizontal",:id=>"contacts_upload", :html => { :multipart => true } do |f| %>
+<div class="inner-box">
+ <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                     <label class="control-label" for="sales_data_upload">File Upload<span class="req">*</span></label>
+                    <div class="controls">
+                        <div class="input-append">
+                             <input class="input-file" name="contact_import[document]" id="sales_data_upload" type="file">    
+                            <div id="error_sales_data_upload" class="error_display"> </div>
+                        </div>
+                         <div class="sales_data_upload"></div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+<div class="form-actions">
+<button type="submit" class="btn btn-success"  id="upload_contact">Submit</button>
+<a href="#" class="btn" data-dismiss="modal">Close</a>  
+</div>
+<%end%>
+</div>
+</div>

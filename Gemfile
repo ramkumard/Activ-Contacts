@@ -15,6 +15,8 @@ gem 'omniauth-pinterest'
 gem "omniauth-google-oauth2", "~> 0.1.11"
 gem 'heroku'
 gem 'bullet'
+gem "paperclip-dropbox", ">= 1.1.7"
+gem "vpim", "~> 13.11.11"
 group :production do
   gem 'rails_12factor'
 end
@@ -40,7 +42,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
+gem 'delayed_job_active_record'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

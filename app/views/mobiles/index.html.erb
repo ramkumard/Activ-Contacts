@@ -1,0 +1,72 @@
+<div class="cnt-left">
+<h2 class="title">Mobile Information</h2>
+    <div class="outer-box">
+        <form class="form-horizontal">
+            <div class="inner-box">
+                <a data-toggle="modal" href="#add_mobile" class="btn" style="float:none; width: 200px;">Add New Mobile</a><br/><br/>
+                <div>
+                    <table class="table table-hover table-bordered">
+                      <thead>
+    <tr>
+      <th>Id</th>
+      <th>Type</th>
+      <th>Mobile No</th>
+      <th>Status</th>
+      <th class="actions">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mobiles && @mobiles.each do |mobile| %>
+      <tr id="<%= mobile.id%>"  class="<%= cycle('odd', 'even')%>">
+        <td><%= mobile.id %></td>
+        <td><%= mobile.tag %></td>
+        <td class="align-center"><%=mobile.phone_no %></td>
+        <td class="align-center"><%=mobile.status %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_mobile_path(mobile),:remote=>"true" %>
+          <%= link_to 'Delete',mobile, method: :delete%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="add_mobile" class="modal hide fade in" style="display: none; ">  
+<%=render :partial =>"new"%>
+</div>
+
+<div id="edit_mobile" class="modal hide fade in" style="display: none;">  
+<%=render :partial =>"edit"%>
+</div>
+
+<script>
+$("#mobile_submit").live('click',function() {
+    $(".error_display").each(function() {
+        $(this).html("");
+    });
+    $.ajax({
+        type: 'POST',
+        url:"/mobiles",
+        data: $("#mobile").serialize(),
+        success:function(data){
+            if (data['status_code'] == 500)
+            {
+                var errors=data['mobile']
+                for (x in errors)
+                    $('#error_'+x).html(errors[x][0]);
+            }
+             else
+            {
+                window.location.href="/mobiles";
+            }
+        }
+    });
+    return false;
+});
+</script>
+

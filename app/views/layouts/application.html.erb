@@ -34,11 +34,11 @@
 				<%if current_user.present?%>
 				<div class="sub-nav clearfix">
 					<ul>
-						<li class="<%= ["licensors"].include?(a) ? "active" : ""%>">
-							<a href="/licensors">Home</a>
+						<li class="<%= ["dashboard"].include?(a) ? "active" : ""%>">
+							<a href="/">Home</a>
 						</li>
-						<li class="<%= ["royalty_reporting"].include?(a) ? "active" : ""%>">
-							<a href="/royalty_reporting">Contacts</a>
+						<li class="<%= ["mobiles"].include?(a) ? "active" : ""%>">
+							<a href="/mobiles">Contacts</a>
 						</li>
 						<!--<li>
 							<a href="#">Royalty Accounting</a>
@@ -56,102 +56,8 @@
 		
 			<div class="container-fluid">
 				<div class="row-fluid">
-					<div id="sidebar" class="span3 shift-right">
-					<%if current_user.present?%>
-						<div class="well sidebar-nav">
-							<div class="accordion" id="accordion2">
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"> <i class="icon-retweet"></i> Masters </a>
-									</div>
-									<div id="collapseOne" class="<%= ["licensors","licensees","trademark_master","territory_master","categories","article_master","channels_master","sku_master","settings"].include?(a) ? "accordion-body collapse in" : "accordion-body collapse"%>">
-										<div class="accordion-inner">
-										<a href="/licensors"  class="<%= ["licensors"].include?(a) ? "active" : ""%>">Licensor Information</a>
-										<a href="/licensees"  class="<%= ["licensees"].include?(a) ? "active" : ""%>">Licensee Information</a>
-										<a href="/trademark_master"  class="<%= ["trademark_master"].include?(a) ? "active" : ""%>">Trademark </a>
-										<a href="/territory_master"  class="<%= ["territory_master"].include?(a) ? "active" : ""%>">Territory </a>
-										<a href="/categories"  class="<%= ["categories"].include?(a) ? "active" : ""%>">Category</a>
-										<a href="/article_master"  class="<%= ["article_master"].include?(a) ? "active" : ""%>">Article</a>
-										<a href="/channels_master"  class="<%= ["channels_master"].include?(a) ? "active" : ""%>">Channel</a>
-										<a href="/sku_master"  class="<%= ["sku_master"].include?(a) ? "active" : ""%>">SKU</a>
-										<a href="/settings"  class="<%= ["settings"].include?(a) ? "active" : ""%>">Settings</a>
-										</div>
-									</div>
-								</div>
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><i class="icon-book"></i> Contracts</a>
-									</div>
-									<div id="collapseTwo" class="<%= ["contract_master","contract_detail","royalty_detail","contract_deduction_details","advances","guarantees","marketing","trademark","territory","categories_contracts","articles","channels","skus","stores"].include?(a) ? "accordion-body collapse in" : "accordion-body collapse"%>">
-										<div class="accordion-inner">
-										<a href="/contract_master"  class="<%= ["contract_master"].include?(a) ? "active" : ""%>">Contract </a>
-										<a href="/contract_detail"  class="<%= ["contract_detail"].include?(a) ? "active" : ""%>">Contract Details</a>
-										<a href="/royalty_detail"  class="<%= ["royalty_detail"].include?(a) ? "active" : ""%>">Royalty Details (Contract)</a>
-										<a href="/contract_deduction_details"  class="<%= ["contract_deduction_details"].include?(a) ? "active" : ""%>">Deduction Details (Contract)</a>
-										<a href="/advances"  class="<%= ["advances"].include?(a) ? "active" : ""%>">Advances (Contract)</a>
-										<a href="/guarantees"  class="<%= ["guarantees"].include?(a) ? "active" : ""%>">Guarantees (Contract)</a>
-										<a href="/marketing"  class="<%= ["marketing"].include?(a) ? "active" : ""%>">Marketing (Contract)</a>
-										<a href="/trademark"  class="<%= ["trademark"].include?(a) ? "active" : ""%>">Trademark (Contract)</a>
-										<a href="/territory"  class="<%= ["territory"].include?(a) ? "active" : ""%>">Territory (Contract)</a></li>
-										<a href="/categories_contracts"  class="<%= ["categories_contracts"].include?(a) ? "active" : ""%>">Categories (Contract)</a>
-										<a href="/articles"  class="<%= ["articles"].include?(a) ? "active" : ""%>">Article (Contract)</a>
-										<a href="/channels"  class="<%= ["channels"].include?(a) ? "active" : ""%>">Channel (Contract)</a>
-										<a href="/skus"  class="<%= ["skus"].include?(a) ? "active" : ""%>">SKU (Contract)</a>
-										<a href="/stores"  class="<%= ["stores"].include?(a) ? "active" : ""%>">Stores (Contract)</a>
-										</div>
-									</div>
-								</div>
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><i class="icon-user"></i> User management</a>
-									</div>
-									<div id="collapseThree" class="<%= ["roles","user_management"].include?(a) ? "accordion-body collapse in" : "accordion-body collapse"%>">
-										<div class="accordion-inner">
-											<a href="/roles" class="<%= ["roles"].include?(a) ? "active" : ""%>">role</a>
-											<a href="/user_management" class="<%= ["user_management"].include?(a) ? "active" : ""%>">User</a>
-										</div>
-									</div>
-								</div>
-								<!--
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><i class="icon-asterisk"></i> General settings</a>
-									</div>
-									<div id="collapseThree" class="accordion-body collapse">
-										<div class="accordion-inner">
-											<a href="/royalty_reporting" class="<%#= ["royalty_reporting"].include?(a) ? "color:blue;" : ""%>">Royalty Reporting</a>
-										</div>
-									</div>
-								</div>
-								-->
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><i class="icon-signal"></i> Reporting</a>
-									</div>
-									<div id="collapseFour" class="<%= ["royalty_reporting"].include?(a) ? "accordion-body collapse in" : "accordion-body collapse"%>">
-										<div class="accordion-inner">
-											<a href="/royalty_reporting" class="<%= ["royalty_reporting"].include?(a) ? "active" : ""%>">Royalty Reporting</a>
-										</div>
-									</div>
-								</div>
-							
-								<div class="accordion-group">
-									<div class="accordion-heading">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive"><i class="icon-asterisk"></i>Overall Imports</a>
-									</div>
-									<div id="collapseFive" class="<%= ["imports"].include?(a) ? "accordion-body collapse in" : "accordion-body collapse"%>">
-										<div class="accordion-inner">
-											<a href="/imports/new" class="<%= ["new"].include?(b) && (a=="imports") ? "active" : ""%>">Import</a>
-											<a href="/import_data" class="<%= ["import_data"].include?(b) && (a=="imports")? "active" : ""%>">ProofTrack Import</a>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-<%end%>
-						</div><!--/.well -->
-					</div><!--/span-->
-					<div id="content_page"class="span9">
+
+					<div id="content_page">
 						<div class="cnt-left">
 						<% if notice.present?%>
 <div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">x</button><%= notice %></div>
@@ -160,7 +66,6 @@
 <div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">x</button><%= alert %></div>
 <%end%>
 <%= yield %>
-	<a href="javascript:void(0);" class="toggles move-left"><i class="icon-chevron-left"></i></a>
 							<div class="footer">
 								<p>
 									&copy; Contract Port – CTI Solution Groups 2013

@@ -1,0 +1,39 @@
+
+	<div class="avatar-background">
+		<%#= link_to avatar(@user.avatar.thumb.url), @user %>
+	</div>
+
+	<ul class="nav nav-list user bottom-margin">
+		<li><i class="icon-comment"></i> <%#= link_to "Board", "/users/board/#{@user.id}" %></li>
+		<li><i class="icon-user"></i> <%#= link_to "View Profile", @user  %></li>
+		<li><i class="icon-user"></i> <%#= link_to "Friends (#{@user.friends.length})", "/users/friends/#{@user.id}" %></a></li>
+		<li><i class="icon-user"></i> <%#= link_to "Events (#{@user.user_events.length})", "/users/events/#{@user.id}" %></a></li>
+		<li><i class="icon-th-large"></i> <%#= link_to "Groups (#{@user.groups.length + @user.group_followers.length})", "/groups/user/list/#{@user.id}" %></li>
+		<li><i class="icon-picture"></i> <%#= link_to "Photos (#{@user.user_photos.length})", "/users/albums/#{@user.id}" %></li>
+		<li><i class="icon-picture"></i> <%#= link_to "Videos (#{@user.user_videos.length})", user_video_index_path(:id => @user.id) %></li>
+		
+		<%# if @user.user_social_account_credential.present? && !@user.user_social_account_credential.fb_token.nil? %>
+			<li><i class="icon-picture"></i> <%#= link_to "Invite Facebook Friends", "/users/invite/#{@user.id}" %></li>
+		<%# else %>
+			<li><i class="icon-picture"></i> <%#= link_to "Invite Facebook Friends", "/users/auth/facebook", :class => "friend" %></li>
+		<%# end %>
+		
+		<%# if @user.invitation_accepted != false %>
+			<li><i class="icon-user"></i> <%#= link_to "Contribute Local Officials (#{@user.officials_locals.length})", "/users/invitations/#{@user.id}" %></li>
+		<%# end %>
+	</ul>
+
+
+
+</div>
+
+<script>
+$(".friend").click(function(){
+		$.ajax({
+			url: "/friends",
+			data:{path:'/users/invite'},
+			success: function(data){
+			}
+		});
+	});
+</script>
