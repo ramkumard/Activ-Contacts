@@ -1,0 +1,16 @@
+<div class="outer-box">
+<%= form_for :address , :url => "/addresses" , :method => "post",:class=>"form-horizontal",:id=>"address" do  %>
+<div class="inner-box"> 
+<%=render :partial =>"contact"%>
+<%=render :partial =>"shared/address_fields"%>
+<%=hidden_field_tag "contact[user_id]",current_user.id%>
+</div>
+<div class="form-actions">
+            <button type="submit" class="btn btn-primary"  id="article_create">
+				Create
+            </button>
+           <button type="reset" value="Reset" class="btn btn-primary reset_values">Reset</button>
+            <a href="<%=addresses_path%>" class="btn btn-primary">Cancel</a>
+        </div>
+<%end%>
+</div>

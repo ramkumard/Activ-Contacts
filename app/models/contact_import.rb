@@ -55,7 +55,7 @@ class ContactImport < ActiveRecord::Base
         user_response[:contacts][:dob]= @bday ? @bday : ""
         user_response[:contacts][:note]= @note ? @note : ""
         if user_response[:contacts][:name].present? && user_response[:contacts][:phones].present?
-            Contact.create!(:name => user_response[:contacts][:name],:email =>user_response[:contacts][:email],:organisation =>user_response[:contacts][:organisation],:phones => user_response[:contacts][:phones],:dob => user_response[:contacts][:dob],:note => user_response[:contacts][:note] )
+            Contact.create!(:name => user_response[:contacts][:name],:email =>user_response[:contacts][:email],:organisation =>user_response[:contacts][:organisation],:phones => user_response[:contacts][:phones],:dob => user_response[:contacts][:dob],:note => user_response[:contacts][:note],:user_id =>user_id )
         end
     end
     delay.update_attributes(:status => "1000" ,:status_desc => 'Contacts Uploaded Successfully',:delayed_desc =>job.last_error)

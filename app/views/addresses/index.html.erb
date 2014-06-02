@@ -1,0 +1,44 @@
+<div class="cnt-left">
+<h2 class="title">Address Information</h2>
+    <div class="outer-box">
+        <form class="form-horizontal">
+            <div class="inner-box">
+                <span><a  href="/addresses/new" class="btn" style="float:none; width: 200px; pull-left">Add New Address</a><%=render :partial=>"search"%><span>
+                <div>
+                          <%=render :partial => "alphabetical"%>
+         <div class="search_contact">
+        <%=render :partial=>"addr"%>
+          </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+$(".search").click(function()
+{
+$.ajax({
+  url: "/search",
+	type: "POST",
+  data: {name:"<%=params[:name]%>",search:$('.search-query').val()},
+  success: function(data){
+	
+  }
+});
+});
+
+$(".alphabetical").click(function()
+{
+$.ajax({
+  url: "/alphabetical",
+	type: "POST",
+  data: {search:$(this).attr("data")},
+  success: function(data){
+	
+  }
+});
+});
+</script>

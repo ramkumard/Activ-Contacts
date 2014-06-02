@@ -15,6 +15,7 @@ gem 'omniauth-pinterest'
 gem "omniauth-google-oauth2", "~> 0.1.11"
 gem 'heroku'
 gem 'bullet'
+gem 'will_paginate-bootstrap', '0.2.5'
 gem "paperclip-dropbox", ">= 1.1.7"
 gem "vpim", "~> 13.11.11"
 group :production do

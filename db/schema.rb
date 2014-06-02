@@ -11,15 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206051101) do
+ActiveRecord::Schema.define(version: 20140602121757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_imports", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "phones",       default: [], array: true
+    t.date     "dob"
+    t.string   "email"
+    t.string   "organisation"
+    t.integer  "user_id"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.string   "approved"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +92,40 @@ ActiveRecord::Schema.define(version: 20140206051101) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "notify_user",          default: false
+  end
+
+  create_table "status_infos", force: true do |t|
+    t.string   "status"
+    t.string   "status_desc"
+    t.integer  "delayed_id"
+    t.text     "delayed_desc"
+    t.integer  "contact_imports_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_friend_invites", force: true do |t|
+    t.integer  "user_id"
+    t.string   "friend_invite_id"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_friends", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_invites", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_invite_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

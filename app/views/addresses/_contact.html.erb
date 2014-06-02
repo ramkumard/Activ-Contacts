@@ -1,0 +1,63 @@
+
+
+  <h3>Personal Info</h3>
+  <div class="section">
+   <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name<span class="req">*</span></label>
+                        <div class="controls">
+                            <%= text_field :contact,:name, :size => 20 %>
+                             <div class="errormsg" ><%= @contact && @contact.errors ? @contact.errors['name'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 right-col">
+                    <div class="control-group">
+                        <label class="control-label" for="dob">Birth date:</label>
+                        <div class="controls">
+                            <%= text_field :contact,:dob, :size => 15 %>
+                            <div class="errormsg" ><%= @contact && @contact.errors ? @contact.errors['name'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row ends -->
+  </div>
+
+  <h3>Contact Info</h3>
+  <div class="section">
+  
+   <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="phone">Phone:<span class="req">*</span></label>
+                        <div class="controls">
+                            <%= text_field_tag "contact[phones]",@contact && @contact.phones ? @contact.phones.join(",") : "",  :size => 20 %>
+                            <div class="errormsg" ><%= @contact && @contact.errors ? @contact.errors['phones'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 right-col">
+                    <div class="control-group">
+                        <label class="control-label" for="email">Email Address:</label>
+                        <div class="controls">
+                            <%= text_field :contact, :email, :size => 30 %>
+                            <div class="errormsg" ><%= @contact && @contact.errors ? @contact.errors['email'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row ends -->
+        <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="organisation">Web Page:<span class="req">*</span></label>
+                        <div class="controls">
+                            <%= text_field :contact, :organisation, :size => 45 %>
+                            <div class="errormsg" ><%= @contact && @contact.errors ? @contact.errors['organisation'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>     
+                </div>     
+  </div>
+  <br />
+

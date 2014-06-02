@@ -1,7 +1,7 @@
 class ContactImportsController < ApplicationController
 
   def index
-
+    @contacts=Contact.where(:user_id =>current_user.id)
   end
 
   def new
@@ -17,7 +17,7 @@ class ContactImportsController < ApplicationController
         format.html { redirect_to contact_imports_path}
         format.json {render :json => { "status_code" => "200", :contact_import => @contact_import }}
       else
-        format.html {render action: 'new'}
+        format.html {render action:'new'}
         format.json{render :json => { "status_code" => "400", :contact_import => @contact_import.errors }}
       end
 		end

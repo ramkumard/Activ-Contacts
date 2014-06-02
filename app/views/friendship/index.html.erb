@@ -1,0 +1,26 @@
+<div class="container">
+
+							<% if user_signed_in? %>
+							
+								<!-- row -->
+								<div class="row">
+								
+									<ul class="members">
+										<% @members.each do |user| %>
+											<li class="member">
+												<%= link_to "", "/users/board/#{user.id}", :title => "#{user.username} " %>
+												<div class="details">
+													
+													<h4><%= link_to "#{user.username}", "/users/#{user.id}" %></h4>
+
+												</div>
+											</li>
+										<% end %>
+									</ul>
+
+								</div>
+
+    
+							<% end %>
+
+						</div>

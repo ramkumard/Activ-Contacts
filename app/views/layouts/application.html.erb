@@ -1,148 +1,184 @@
 <!DOCTYPE html>
 <html>
-<head>
-		<meta charset="utf-8">
-		<title>Activ Contacts</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Activ Contacts">
-  <title>Activ Contacts</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-		<div class="page">
-			<div class="navbar navbar-inverse navbar-fixed-top">
-				<div class="navbar-inner">
-					<div class="container-fluid">
-						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-						<a class="brand" href="#"><h1><%= image_tag "logo.png" %><span></span></h1></a>
-						<div class="nav-collapse collapse">
-							<p class="navbar-text pull-right">
-							<%if current_user.present?%>
-								<span>Welcome </span><b><%=current_user ? current_user.username : "Administrator"%></b>
-								<a href="#" class="navbar-link" id="my_account">My Account</a>
-								<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-								<%end%>
-							</p>
-							<a href="#" class="cp"></a>
-						</div><!--/.nav-collapse -->
-					</div>
-				</div>
-				<% a=controller.controller_name %>
-				<% b=controller.action_name %>
-				<%if current_user.present?%>
-				<div class="sub-nav clearfix">
-					<ul>
-						<li class="<%= ["dashboard"].include?(a) ? "active" : ""%>">
-							<a href="/">Home</a>
-						</li>
-						<li class="<%= ["mobiles"].include?(a) ? "active" : ""%>">
-							<a href="/mobiles">Contacts</a>
-						</li>
-						<!--<li>
-							<a href="#">Royalty Accounting</a>
-						</li>-->
-						<!--li class="<%= ["user_management"].include?(a) ? "active" : ""%>">
-							<a href="/user_management">Admin</a>
-						</li-->
-					</ul>
-					<div id="load_image" style="padding-right:25px; display:none;" >
-					<img src="/assets/ajax-loader-icon.gif">
-					</div>
-				</div>
-				<%end%>
-			</div>
-		
-			<div class="container-fluid">
-				<div class="row-fluid">
+  <head>
+    <meta charset="utf-8">
+    <title>Activ Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Activ Contacts">
+    <title>Activ Contacts</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="page">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <a class="brand" href="#"><h1><%#= image_tag "logo.png" %><span></span></h1></a>
+            <div class="nav-collapse collapse">
+              <p class="navbar-text pull-right">
+                <%if current_user.present?%>
+                  <span>Welcome </span><b><%=current_user ? current_user.username : "Administrator"%></b>
+                  <a href="#" class="navbar-link" id="my_account">My Account</a>
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                <%end%>
+              </p>
+              <a href="#" class="cp"></a>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+        <% a=controller.controller_name %>
+        <% b=controller.action_name %>
+        <%if current_user.present?%>
+          <div class="sub-nav clearfix">
+            <ul>
+              <li class="<%#= ["dashboard"].include?(a) ? "active" : ""%>">
+                <a href="/">Home</a>
+              </li>
+              <li class="<%#= ["mobiles"].include?(a) ? "active" : ""%>">
+                <a href="/mobiles">Mobile</a>
+              </li>
+              <li class="<%#= ["contact_imports"].include?(a) ? "active" : ""%>">
+                <a href="/contact_imports">Contacts</a>
+              </li>
+              <!--li class="<%#= ["user_management"].include?(a) ? "active" : ""%>">
+                                                          <a href="/user_management">Admin</a>
+                                                  </li-->
+            </ul>
+            <div id="load_image" style="padding-right:25px; display:none;" >
+              <img src="/assets/ajax-loader-icon.gif">
+            </div>
+          </div>
+        <%end%>
+      </div>
 
-					<div id="content_page">
-						<div class="cnt-left">
-						<% if notice.present?%>
-<div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">x</button><%= notice %></div>
-<%end%>
-<% if alert.present?%>
-<div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">x</button><%= alert %></div>
-<%end%>
-<%= yield %>
-							<div class="footer">
-								<p>
-									&copy; Contract Port – CTI Solution Groups 2013
-								</p>
-							</div>
-						</div>
-					</div><!--/span-->
-				</div><!--/row-->
+      <div class="container-fluid">
+        <div class="row-fluid">
 
-			</div><!--/.fluid-container-->
-		</div>
-	</body>
-</html>
+          <div id="content_page">
+            <div class="cnt-left">
+              <div class="container">
 
-<script type="text/javascript">
-$(document).ajaxStart(function() {
-$( "#load_image" ).show();
-});
-$(document).ajaxStop(function() {
-$( "#load_image" ).hide();
-});
-    $("#my_account").click(function() {
+                <div class="row section">
+                  <div class="span12">
+
+                    <div class="row">
+                      <div class="span3">
+                        <div class="member-left">
+
+                          <div class="avatar-background">
+                            <a href="/users/10"><img src="/assets/no-profile-100.gif" /></a>
+                          </div>
+
+                          <div class="well" style="padding: 8px 0;">
+                            <p>Invitation to become a contributor if criteria
+                              is met. User has the ability to decline or
+                              accept this request, and once accepted or
+                              declined, this box will no longer show</p>
+                          </div>
+                          <ul class="nav nav-list user bottom-margin">
+                            <li><span><i class="icon-comment"></i><a href="/users/board/10">Board</a></span></li>
+                            <li><span><i class="icon-user"></i> <a href="/users/10">View Profile</a></span></li>
+                            <li><span><i class="icon-user"></i> <a href="/friends">My Friends (0)</a></a></span></li>
+                            <li><span><i class="icon-user"></i> <a href="/mobiles">My Contacts (<%=current_user && current_user.mobiles ? current_user.mobiles.count : 0%>)</a></a></span></li>
+                            <li><span><i class="icon-th-large"></i> <a href="/addresses">My Address (<%=current_user && current_user.contacts ? current_user.contacts.count : 0%>)</a></span></li>
+                            <li><span><i class="icon-picture"></i> <a href="/users/albums/10">My Photos (0)</a></span></li>
+                            <li><span><i class="icon-picture"></i> <a href="/users/auth/facebook" class="friend">Invite Facebook Friends</a></span></li>
+                          </ul>
+                        </div><!--member-left-->
+                      </div><!--span3-->
+                      <div class="span9">
+                        <% if notice.present?%>
+                          <div class="alert alert-success"><button data-dismiss="alert" class="close" type="button">x</button><%= notice %></div>
+                        <%end%>
+                        <% if alert.present?%>
+                          <div class="alert alert-error"><button data-dismiss="alert" class="close" type="button">x</button><%= alert %></div>
+                        <%end%>
+                        <%= yield %>
+                      </div> <!-- /span 9-->
+                    </div><!--row-->
+                    </div><!--span12-->
+                    </div><!--span12-->
+                    </div><!--span12-->
+                    <div class="footer">
+                      <p>
+                        &copy; Contract Port – CTI Solution Groups 2013
+                      </p>
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+
+            </div><!--/.fluid-container-->
+          </div>
+          </body>
+          </html>
+
+          <script type="text/javascript">
+            $(document).ajaxStart(function() {
+              $( "#load_image" ).show();
+            });
+            $(document).ajaxStop(function() {
+              $( "#load_image" ).hide();
+            });
+            $("#my_account").click(function() {
               $.ajax({
-            url: "/user_management/my_account",
-            type: 'GET',
-            data:{ auth_token : $('#current_user_id').val()},
-            success: function(data){
-                modal.close();
-                modal.open({content: data});
-                //~ check_date();
+                url: "/user_management/my_account",
+                type: 'GET',
+                data:{ auth_token : $('#current_user_id').val()},
+                success: function(data){
+                  modal.close();
+                  modal.open({content: data});
+                  //~ check_date();
+                }
+              });
+            });
+
+            $('a.toggles').click(function() {
+              $('a.toggles i').toggleClass('icon-chevron-left icon-chevron-right');
+              $('a.toggles').toggleClass('move-left move-right');
+              //~ $('#sidebar').animate({
+              //~ width: 'toggle'
+              //~ }, 100);
+              $('#sidebar').toggleClass('shift-right shift-left');
+              $('#content_page').toggleClass('span12 span9');
+            });
+
+
+
+          </script>
+          <style>
+
+            a.toggles {
+              color: white;
+              display: block;
+              position: absolute;
+              top: 36%;
             }
-        });
-        });
-				
-	$('a.toggles').click(function() {
-    $('a.toggles i').toggleClass('icon-chevron-left icon-chevron-right');
- $('a.toggles').toggleClass('move-left move-right');
-    //~ $('#sidebar').animate({
-        //~ width: 'toggle'
-    //~ }, 100);
-		$('#sidebar').toggleClass('shift-right shift-left');
-    $('#content_page').toggleClass('span12 span9');
-});
 
+            .move-left{
+              left: 295px;
+            }
 
+            .move-right{
+              left:0px;
+            }
 
-</script>
-<style>
+            .shift-left {
+              margin-left: -22% !important;
+            }
 
-a.toggles {
-    color: white;
-    display: block;
-    position: absolute;
-    top: 36%;
-}
+            .shift-right {
+              margin-left: 0px !important;
+            }
 
-.move-left{
-    left: 295px;
-}
+            .accordion {
+              border-right: 20px solid #727070;
+            }
 
-.move-right{
-left:0px;
-}
-
-.shift-left {
-    margin-left: -22% !important;
-}
-
-.shift-right {
-    margin-left: 0px !important;
-}
-
-.accordion {
-    border-right: 20px solid #727070;
-}
-
-.row-fluid .span12{
-width:98%!important;
-}
-</style>
+            .row-fluid .span12{
+              width:98%!important;
+            }
+          </style>

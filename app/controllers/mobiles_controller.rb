@@ -19,6 +19,7 @@ class MobilesController < ApplicationController
   def update
       if @mobile.present?
         @mobile.update_attributes(mobile_params)
+        #~ @mobile.notify_user
       flash[:notice] = "Record updated successfully"
       redirect_to mobiles_path
     else
@@ -30,6 +31,7 @@ class MobilesController < ApplicationController
   def create
     @mobile=current_user.mobiles.build(mobile_params)
     if @mobile.save
+       #~ @mobile.notify_user
       render :json => { :mobile => @mobile, :status_code => "201" }
     else
       render :json => { :mobile => @mobile.errors, :status_code => "500" }

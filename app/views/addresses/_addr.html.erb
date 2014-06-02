@@ -1,0 +1,30 @@
+<%if  @contact && @contact.count >0%> 
+ <table class="table table-hover table-bordered">
+                      <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th class="actions">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contact && @contact.each do |contact| %>
+      <tr id="<%=contact.name%>"  class="<%= cycle('odd', 'even')%>">
+        <td><%= contact.name %></td>
+        <td><%= contact.phones.join(",") %></td>
+        <td><%= "<p>Name: #{contact.name} <br/> Address1: #{contact.address ? contact.address.address1: ""}<br/>  Address2: #{contact.address ? contact.address.address2 : ""}<br/> City: #{contact.address ? contact.address.city : ""}<br/> State: #{contact.address ? contact.address.state : ""}<br/> Pincode: #{contact.address ? contact.address.zip: ""}<br/></p>".html_safe %></td>
+        <td class="actions">
+          <%= link_to "Edit", edit_address_path(contact.address ? contact.address.id : 0) %>
+          <%= link_to 'Delete',contact.address, method: :delete%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="paginationwrap">
+	<%= will_paginate @contact, renderer: BootstrapPagination::Rails if @contact%>
+	</div>
+<%else%>
+<div class="errormsg"><center><strong>"No Records Found"</strong></center></div>
+<%end%>

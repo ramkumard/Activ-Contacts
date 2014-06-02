@@ -132,3 +132,55 @@ ul, li {
 	}
 }
 
+
+// User Side Bar
+// --------------------------------------------------
+
+	.avatar-background {
+		background: url("../assets/bg-avatar.gif") no-repeat;
+		width: 132px;
+		height: 132px;
+		padding: 10px 0 0 10px;
+		margin-bottom: 15px;
+	}
+
+	.avatar-background img {
+		width: 122px;
+		height: 122px;
+	}
+
+	.nav-list.user {
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav-list.user a,
+	.nav-list.user a:hover {
+		background: none;
+	}
+
+	.nav-list.user a {
+		color: #4a8db7;
+		text-decoration: none;
+	}
+
+	.nav-list.user a:hover {
+		text-decoration: underline;
+	}
+
+	.nav-list.user li i {
+		/*margin-right: @baseMargin - 6 !important;*/
+		margin-right: 8px !important;
+	
+	}
+
+.well {
+min-height: 20px;
+padding: 0;
+background-color: #ffffff !important;
+}
+
+.src-box-wrap{
+
+}
+

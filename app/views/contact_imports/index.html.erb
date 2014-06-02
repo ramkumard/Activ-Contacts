@@ -1,3 +1,33 @@
 <span id="status_notify" > No job in progress</span><a style="width:100%;margin: 0 0 0px 4px;" href="#myModal" data-toggle="modal"  data-keyboard="true" class="error_disp"><img src="/assets/info_button.png"></a>
     <div class="progress progress-striped active" style="width:1000px;">
         <div class="bar" style="width: 0%;"></div>
+    </div>
+    <div class="searchbox">
+        <table class="table table-bordered">
+                                            <thead>
+                                            	<tr>
+                                                	<th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Notes</th>
+                                                    <th>Organisation</th>
+<th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+  <% @contacts.each do |contact|%> 
+                                             <tr>
+                                               <td><%=contact.name%></td>
+                                               <td class="data-name"><%=contact.email%></td>
+                                               <td class="data-name"><%=contact.phones.join(",")%></td>
+                                               <td class="data-name"><%=contact.dob%></td>
+                                               <td class="data-name"><%=contact.note%></td>
+                                               <td class="data-name"><%=contact.organisation%></td>
+<td><%#= link_to '', regulation_path(reg), :method => "delete", :confirm => 'Are you sure,wnat to delete?',:class=>"delete-btn-icon",:title=>"delete"%></td>
+                                           </tr>
+                                            	<% end %>
+                                            	
+                                                 </tbody>
+                                            </table>
+                                            </div>

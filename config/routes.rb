@@ -11,6 +11,12 @@ Contacts::Application.routes.draw do
   resources :mobiles
   resources :user_friend_invites
   resources :contact_imports
+  resources :addresses
+  resources :friendship
+  post '/search' => "addresses#search" ,:as=>"address_search"
+  post '/alphabetical' => "addresses#alphabetical" ,:as=>"alphabetical_search"
+  get '/friends' => "friendship#index" ,:as=>"friends"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

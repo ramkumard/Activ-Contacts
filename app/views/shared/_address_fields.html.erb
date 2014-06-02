@@ -1,0 +1,53 @@
+<h3>Address Details</h3>
+   <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="address1">Address Line 1:<span class="req">*</span></label>
+                        <div class="controls">
+                            <%= text_field :address, :address1, :size => 40 %>
+                            <div class="errormsg" ><%= @address && @address.errors ? @address.errors['address1'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 right-col">
+                    <div class="control-group">
+                        <label class="control-label" for="address2">Address Line 2:</label>
+                        <div class="controls">
+                            <%= text_field :address, :address2, :size => 15 %>
+                            <div class="errormsg" ><%= @address && @address.errors ? @address.errors['address2'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row ends -->
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="city">City:<span class="req">*</span></label>
+                        <div class="controls">
+                           <%= text_field :address, :city, :size => 20 %>
+                            <div class="errormsg" ><%= @address && @address.errors ? @address.errors['city'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="span6 right-col">
+                    <div class="control-group">
+                        <label class="control-label" for="state">State:</label>
+                        <div class="controls">
+                            <%= select :address, :state,State.options_for_select %>
+                           <div class="errormsg" ><%= @address && @address.errors ? @address.errors['state'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row ends -->
+               <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label" for="zip">Zip:<span class="req">*</span></label>
+                        <div class="controls">
+                           <%= text_field :address, :zip, :size => 20 %>
+                           <div class="errormsg" ><%= @address && @address.errors ? @address.errors['zip'][0] : "" %></div> 
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row ends -->
+
