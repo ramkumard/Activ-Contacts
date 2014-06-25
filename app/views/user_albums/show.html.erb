@@ -1,0 +1,85 @@
+<div class="container-fluid top-light">
+	<div class="container">
+		
+		<div class="row section">
+			<div class="span12">
+				
+				<ul class="breadcrumb no-bottom">
+					<li><%= link_to "Members", "/users" %> <span class="divider">/</span></li>
+					<li><%= link_to "#{@user.first_name} #{@user.last_name}", "/users/#{@user.id}" %> <span class="divider">/</span></li>
+					<li class="active">Photos</li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="container-fluid section-wrapper">
+	<div class="container">
+		
+		<div class="row section">
+			<div class="span12">
+				
+				<div class="row">
+					<div class="span3">
+						<%= render "users/sidebar" %>
+					</div>
+					<div class="span9">
+
+
+						<h2 class="underline left">
+							<%= @user_album.name %>
+							<%= link_to "Add Photos", "/users/albums/create/new", :class => "btn btn-dark pull-right" %>
+						</h2>
+
+			<div class="container">
+				<ul class="thumbnails span8 photos" >
+					<% @user_photos.each_with_index do |user_photo, index| %>
+					<% index = index + 1%>
+						<li>
+							<%= link_to image_tag(user_photo.photo.thumb, :class => "thumbnail bottom-margin",:width=> "100px",:height=> "100px"), "#{user_photo.photo.thumb}", :class => 'colorbox', :rel => 'gal', :title => user_photo.title %>
+							<% if user_signed_in? %>
+								<% if user_photo.user_id == current_user.id %>
+								<%= link_to "Crop photo", "#", :class => "crop_data  tip", :title => "You can crop your own content.", :id=>user_photo.id, :value=> "photo" %>
+									<%= link_to "Delete photo", "/users/albums/photo/destroy/#{user_photo.id}", :class => "delete-item confirm tip", :title => "You can delete your own content." %>
+								<% end %>
+								<% end %>
+								</li>
+								<% end %>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<%= render "users/bottom" %>
+<div class="box" style="display:none;">
+      <%= render "image" %>
+</div>
+	</div>
+</div>
+
+
+<script>
+$(".crop_data").live("click", function(e){ 
+$(".article").hide();
+$(".photo_"+$(this).attr("id")).show();
+$(".user_photo_crop_hidden").attr("value",$(this).attr("value"))
+$(".user_photo_crop_id_hidden").attr("value",$(this).attr("id"))
+  $.ajax({
+    url: '/crop_image/<%=params[:id]%>',
+    data:{photo_crop: $(this).attr("value"),crop_id:$(this).attr("id")},
+    success: function(data){
+    }
+  });
+$('.box').lightbox_me({
+ centered: true
+        });
+    e.preventDefault();
+  });
+</script>
+

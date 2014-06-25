@@ -1,0 +1,25 @@
+							<% if user_signed_in? %>
+							
+								<!-- row -->
+								<div class="row">
+								  <%if @friends && @friends.count >0%>
+									<ul class="members">
+										<% @friends.each do |friend| %>
+											<li class="member">
+												<%= link_to "", "/users/board/#{friend.user.id}", :title => "#{friend.user.username} " %>
+												<div class="details">
+                                                        <h4><%= link_to "#{friend.user.username}", "/users/#{friend.user.id}" %></h4>
+                                                        <%= link_to "Yes", "/accept/#{friend.user.id}/friend/#{friend.id}",:class => "btn btn-sec", :title => "Accept",:remote =>true %>
+                                                        <%= link_to "No", "/reject/#{friend.user.id}/friend/#{friend.id}",:class => "btn btn-primary ", :title => "Reject",:remote =>true %>
+												</div>
+											</li>
+										<% end %>
+									</ul>
+                                    <%else%>
+                                    <p> No Pending request</p>
+                                    <%end%>
+
+								</div>
+
+    
+							<% end %>

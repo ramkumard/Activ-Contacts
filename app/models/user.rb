@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :contact_imports
   has_many :friendships, :foreign_key => "user_id", :dependent => :destroy
+  has_many :user_albums, :foreign_key => "user_id", :dependent => :destroy
+  has_many :user_photos, :foreign_key => "user_id", :dependent => :destroy
   def self.find_first_by_auth_conditions(warden_conditions) 
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

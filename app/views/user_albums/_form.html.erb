@@ -1,0 +1,42 @@
+<%= form_for(@user_album, :html => {:class => "form-horizontal left-align", :multipart => true}) do |f| %>
+
+	<fieldset>
+	
+		<div class="control-group">
+			<%= label_tag "Album Name", nil, :class => "control-label" %>
+			<div class="controls">
+				<%= f.text_field :name, :class => "span6", :placeholder => 'Enter Album Name', 'data-provide' => "typeahead", 'data-source' => @typeahead %>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<%= f.fields_for :user_photos do |user_photo| %>
+	
+			<div class="control-group">
+				<%= user_photo.label :title, :class => "control-label" %>
+				<div class="controls">
+					<%= user_photo.text_field :title, :class => "span6" %>
+				</div>
+			</div>
+	
+			<div class="control-group">
+				<label class="control-label" for="photo_1">Photo:</label>
+				<div class="controls">
+					<%= user_photo.file_field :photo %>
+				</div>
+			</div>
+			
+			<%= user_photo.hidden_field :user_id, :value => current_user.id %>
+			
+		<% end %>
+		
+		<p class="help-block bottom-margin"><%#= render "components/upload_limit_text" %></p>
+		
+	</fieldset>
+
+	<fieldset>
+			<%= f.submit "Create Album", :class => "btn" %>
+	</fieldset>
+
+<% end %>

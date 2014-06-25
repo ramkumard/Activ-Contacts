@@ -13,9 +13,15 @@ Contacts::Application.routes.draw do
   resources :contact_imports
   resources :addresses
   resources :friendship
+  resources :user_albums
+  resources :user_photos
+  
   post '/search' => "addresses#search" ,:as=>"address_search"
   post '/alphabetical' => "addresses#alphabetical" ,:as=>"alphabetical_search"
   get '/friends' => "friendship#index" ,:as=>"friends"
+  get '/accept/:friend_id/friend/:id' =>"user_friend_invites#accept" ,:as=>"approve"
+  get '/reject/:friend_id/friend/:id' =>"user_friend_invites#reject" ,:as=>"reject"
+  get 'opensearch' =>"application#opensearch" ,:as=>"opensearch"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

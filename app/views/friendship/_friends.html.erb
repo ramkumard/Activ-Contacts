@@ -1,0 +1,52 @@
+							<% if user_signed_in? %>
+							
+                            
+                            
+                            	<div class="row">
+								
+									<ul class="friends">
+										<% @user_friends.each do |friends| %>
+											<li class="member">
+                                            <%if friends.friend==current_user%>
+												<%= link_to "", "/users/board/#{friends.user.id}", :title => "#{friends.user.username.capitalize} " %>
+                                            <%else%>
+                                                <%= link_to "", "/users/board/#{friends.friend.id}", :title => "#{friends.friend.username.capitalize} " %>
+                                            <%end%>
+												<div class="details">
+													<%if friends.friend==current_user%>
+													<h4><%= link_to "#{friends.user.username.capitalize}", "/users/#{friends.user.id}" %></h4>
+                                                    <%else%>
+                                                    <h4><%= link_to "#{friends.friend.username.capitalize}", "/users/#{friends.friend.id}" %></h4>
+                                                    <%end%>
+												</div>
+											</li>
+										<% end %>
+									</ul>
+
+								</div>
+                                
+								<!-- row -->
+								<div class="row">
+								
+									<ul class="members">
+										<% @members.each do |user| %>
+											<li class="member">
+												<%= link_to "", "/users/board/#{user.id}", :title => "#{user.username} " %>
+												<div class="details">
+													
+													<h4><%= link_to "#{user.username}", "/users/#{user.id}" %></h4>
+                                                    <% if user.friendships.include?(current_user) %>
+														<%= link_to image_tag("friend-pin.png"), "#", :title => "Friend", :class => "friend-pin tip" %>
+													<% end %>
+                                                  <% if !user.friendships.include?(current_user) %>
+														<%= button_to "Add Friend",{ :controller => 'friendship', :action => 'new', :friend_id => user.id }, remote: true,method: :get, :class => "btn btn-small btn-primary" %>
+													<% end %>
+												</div>
+											</li>
+										<% end %>
+									</ul>
+
+								</div>
+
+    
+							<% end %>

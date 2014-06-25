@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <link href='/opensearch.xml' rel='search' title='YerWebberSite search' type='application/opensearchdescription+xml'>
   </head>
   <body>
     <div class="page">
@@ -73,18 +74,21 @@
                           </div>
 
                           <div class="well" style="padding: 8px 0;">
-                            <p>Invitation to become a contributor if criteria
-                              is met. User has the ability to decline or
-                              accept this request, and once accepted or
-                              declined, this box will no longer show</p>
+                          <%result=Friendship.where('(user_id= ?) OR (friend_id= ?) and approved =? and status=?', current_user.id, current_user.id,"true","true")%>
+                          <% if !Friendship.where(:friend_id=>current_user.id,:approved =>"false",:status=>nil).empty?%>
+                           <p>You have pending invitations</p>
+                           <%= link_to "View Invitations",new_user_friend_invite_path,:class => "btn btn-sec" %>
+                          <%else%>
+                            <p>No pending activities found</p>
+                          <%end%>
                           </div>
                           <ul class="nav nav-list user bottom-margin">
                             <li><span><i class="icon-comment"></i><a href="/users/board/10">Board</a></span></li>
                             <li><span><i class="icon-user"></i> <a href="/users/10">View Profile</a></span></li>
-                            <li><span><i class="icon-user"></i> <a href="/friends">My Friends (0)</a></a></span></li>
-                            <li><span><i class="icon-user"></i> <a href="/mobiles">My Contacts (<%=current_user && current_user.mobiles ? current_user.mobiles.count : 0%>)</a></a></span></li>
+                            <li><span><i class="icon-user"></i> <a href="/friends">My Friends (<%=result && result.count%>)</a></span></li>
+                            <li><span><i class="icon-user"></i> <a href="/mobiles">My Contacts (<%=current_user && current_user.mobiles ? current_user.mobiles.count : 0%>)</a></span></li>
                             <li><span><i class="icon-th-large"></i> <a href="/addresses">My Address (<%=current_user && current_user.contacts ? current_user.contacts.count : 0%>)</a></span></li>
-                            <li><span><i class="icon-picture"></i> <a href="/users/albums/10">My Photos (0)</a></span></li>
+                            <li><span><i class="icon-picture"></i> <a href="/user_albums">My Photos (0)</a></span></li>
                             <li><span><i class="icon-picture"></i> <a href="/users/auth/facebook" class="friend">Invite Facebook Friends</a></span></li>
                           </ul>
                         </div><!--member-left-->

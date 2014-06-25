@@ -1,0 +1,46 @@
+<div class="cnt-left">
+<div class="outer-box">
+<div class="inner-box">
+
+	<div class="container">
+						<h2 class="underline left">
+							<%=current_user.username.capitalize%>'s Albums
+							<% if user_signed_in?  %>
+								<%= link_to "Add Photos", new_user_album_path, :class => "btn btn-dark" %>
+							<% end %>
+						</h2>
+							<% if @user_albums.blank? || current_user.user_photos.length == 0 %>
+                            <p><%= current_user.username %> </strong> does not have any albums yet.</p>
+								<!--div class="alert alert-info">
+									<strong><%= current_user.username %> </strong> does not have any albums yet.
+								</div-->
+							<% end %>
+
+							<div class="container">
+								<ul class="thumbnails span8 albums">
+									<% @user_albums.each do |user_album| %>
+										<% if user_album.user_photos.length > 0 %>
+										<li>
+											<%= link_to image_tag(user_album.user_photos.first.photo.thumb.url, :class => "thumbnail",:width=> "110px",:height=> "110px"), "/users/albums/display/#{user_album.id}" %><br />
+											<span class="album-name"><%= link_to user_album.name, "/users/albums/display/#{user_album.id}" %></span>
+											<% if user_signed_in? %>
+												<% if user_album.user_id == current_user.id %>
+													<%= link_to "Delete album", "/users/albums/destroy/#{user_album.id}", :class => "delete-item confirm tip", :title => "You can delete your own content." %>
+												<% end %>
+											<% end %>
+										</li>
+										<% end %>
+									<% end %>
+								</ul>
+							</div>
+						
+
+						
+
+		<hr>
+
+	</div>
+
+</div>
+</div>
+</div>

@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'devise','3.2.2'
+gem 'puma'
+gem 'redis'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'omniauth-facebook'
@@ -15,6 +17,7 @@ gem 'omniauth-pinterest'
 gem "omniauth-google-oauth2", "~> 0.1.11"
 gem 'heroku'
 gem 'bullet'
+gem 'opensearch'
 gem 'will_paginate-bootstrap', '0.2.5'
 gem "paperclip-dropbox", ">= 1.1.7"
 gem "vpim", "~> 13.11.11"
